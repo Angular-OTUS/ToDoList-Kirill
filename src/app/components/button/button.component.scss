@@ -1,0 +1,28 @@
+.button {
+  color: #FFFFFF;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+
+  &__add {
+    padding: 15px 5px;
+    background-color: green;
+    white-space: nowrap;
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &__delete {
+    padding: 10px;
+    height: 100%;
+    background-color: red;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__noActive {
+    opacity: 0.5;
+  }
+}

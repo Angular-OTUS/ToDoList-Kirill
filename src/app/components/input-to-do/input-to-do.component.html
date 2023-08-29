@@ -1,0 +1,4 @@
+<div class="todo-add">
+  <input placeholder="Add your new todo" matInput type="text" [value] ="todoName" (change)="onValueChange($event)">
+  <app-button [buttonProps]="todoAdd" (clickButton)="onClickAdd()"></app-button>
+</div>
