@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
+export interface ITodoItem {
+  id: number;
+  text: string;
+}
 
 @Component({
   selector: 'app-to-do-list',
@@ -6,5 +11,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./to-do-list.component.scss']
 })
 export class ToDoListComponent {
+  arrayTodo: ITodoItem[] = [];
+  setNewTodo(todoName: string) {
+    const currentMaxId = this.getMaxId()
+    this.arrayTodo = [...this.arrayTodo, {id:currentMaxId + 1, text: todoName}]
+  }
 
+  setDeleteTodo(id: number) {
+    this.arrayTodo = this.arrayTodo.filter((item: ITodoItem) => item.id !== id)
+  }
+
+  getMaxId() {
+    const arrayIds: number[] = [0]
+    this.arrayTodo.forEach(({id}: ITodoItem) => {
+      arrayIds.push(id)
+    })
+    return Math.max(...arrayIds)
+  }
 }
