@@ -1,4 +1,5 @@
-<div class="container">
+<app-loader *ngIf="isLoading"></app-loader>
+<div class="container" *ngIf="!isLoading">
   <h1>Todo List</h1>
   <ul>
     <app-to-do-list-item-component

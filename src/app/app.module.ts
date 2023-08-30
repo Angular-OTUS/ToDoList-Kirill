@@ -5,26 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToDoListComponent } from './components/to-do-list/to-do-list.component';
 import { ToDoListItemComponent } from './components/to-do-list-item-component/to-do-list-item-component';
-import { ButtonComponent } from './components/button/button.component';
 import { InputToDoComponent } from './components/input-to-do/input-to-do.component';
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {SharedModule} from "./modules/shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     ToDoListComponent,
     ToDoListItemComponent,
-    ButtonComponent,
-    InputToDoComponent
+    InputToDoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     MatInputModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

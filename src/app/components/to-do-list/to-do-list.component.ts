@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 export interface ITodoItem {
   id: number;
@@ -10,8 +10,9 @@ export interface ITodoItem {
   templateUrl: './to-do-list.component.html',
   styleUrls: ['./to-do-list.component.scss']
 })
-export class ToDoListComponent {
+export class ToDoListComponent implements OnInit{
   arrayTodo: ITodoItem[] = [];
+  isLoading = true;
   setNewTodo(todoName: string) {
     const currentMaxId = this.getMaxId()
     this.arrayTodo = [...this.arrayTodo, {id:currentMaxId + 1, text: todoName}]
@@ -27,5 +28,11 @@ export class ToDoListComponent {
       arrayIds.push(id)
     })
     return Math.max(...arrayIds)
+  }
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 500)
   }
 }

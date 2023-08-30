@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {ButtonProps} from "../../Types/ButtonTypes";
+import {ButtonProps} from "../../../../Types/ButtonTypes";
+
 
 
 @Component({
