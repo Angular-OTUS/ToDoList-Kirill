@@ -1,4 +1,4 @@
-<li>
+<li [class] = "{selected: isSelected}" (click)="selectId.emit(this.todoItem?.id)">
   {{todoItem?.text}}
-  <app-button [buttonProps]="buttonDelete" (clickButton)="deleteTargetTodo()"></app-button>
+  <app-button [buttonProps]="buttonDelete" (clickButton)="deleteTodo.emit(this.todoItem?.id)"></app-button>
 </li>

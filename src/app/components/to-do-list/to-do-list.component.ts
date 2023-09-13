@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 export interface ITodoItem {
   id: number;
   text: string;
+  description: string;
 }
 
 @Component({
@@ -13,13 +14,26 @@ export interface ITodoItem {
 export class ToDoListComponent implements OnInit{
   arrayTodo: ITodoItem[] = [];
   isLoading = true;
-  setNewTodo(todoName: string) {
+  selectedItemId: number | null = null
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false
+    }, 500)
+  }
+
+  setNewTodo(todoData: [string, string]) {
+    const [todoName, todoDescription] = todoData
     const currentMaxId = this.getMaxId()
-    this.arrayTodo = [...this.arrayTodo, {id:currentMaxId + 1, text: todoName}]
+    this.arrayTodo = [...this.arrayTodo, {id:currentMaxId + 1, text: todoName, description: todoDescription}]
   }
 
   setDeleteTodo(id: number) {
     this.arrayTodo = this.arrayTodo.filter((item: ITodoItem) => item.id !== id)
+  }
+
+  setSelectedItemId(id: number) {
+    this.selectedItemId = this.selectedItemId !== id ? id : null
   }
 
   getMaxId() {
@@ -30,9 +44,8 @@ export class ToDoListComponent implements OnInit{
     return Math.max(...arrayIds)
   }
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false
-    }, 500)
+  getDescription(id: number | null) {
+    const selectedTodo = this.arrayTodo.find((item: ITodoItem) => item.id === id)
+    return selectedTodo?.description
   }
 }

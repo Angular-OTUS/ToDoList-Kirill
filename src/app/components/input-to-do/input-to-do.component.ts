@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {ButtonProps} from "../../Types/ButtonTypes";
-import {buttonAdd} from "../../constants/buttonConstData";
+import {ButtonProps} from "src/app/Types/ButtonTypes";
+import {buttonAdd} from "src/app/constants/buttonConstData";
 
 @Component({
   selector: 'app-input-to-do',
@@ -8,24 +8,33 @@ import {buttonAdd} from "../../constants/buttonConstData";
   styleUrls: ['./input-to-do.component.scss']
 })
 export class InputToDoComponent {
-  public todoName = ''
   public todoAdd: ButtonProps = buttonAdd
-
-  @Output() sendNewTodo = new EventEmitter<string>()
+  public todoName = ''
+  public todoDescription = ''
+  @Output() sendNewTodo = new EventEmitter<[string, string]>()
 
   onClickAdd() {
-    this.sendNewTodo.emit(this.todoName)
-    this.onCheckInput("")
+    if (!this.todoAdd.isDisabled) {
+      this.sendNewTodo.emit([this.todoName, this.todoDescription])
+      this.todoDescription = ""
+      this.todoName = ""
+      this.todoAdd.isDisabled = true
+    }
   }
 
-  onValueChange($event: Event): void {
-    const {value} = $event.target as HTMLInputElement
-    this.onCheckInput(value)
-  }
-
-  onCheckInput(value: string) {
+  onChangeInput(value: string) {
     this.todoName = value
-    if (this.todoName === "") {
+    this.onCheckData()
+  }
+
+  onChangeArea(value: string) {
+    this.todoDescription = value
+    this.onCheckData()
+  }
+
+  onCheckData() {
+    this.todoAdd = {...this.todoAdd, buttonStyles: {...buttonAdd.buttonStyles,  button__noActive: false}, isDisabled: false}
+    if (this.todoName === "" || this.todoDescription === "") {
       this.todoAdd = {...this.todoAdd, buttonStyles: {...buttonAdd.buttonStyles,  button__noActive: true}, isDisabled: true}
     } else {
       this.todoAdd = {...this.todoAdd, buttonStyles: {...buttonAdd.buttonStyles,  button__noActive: false}, isDisabled: false}
