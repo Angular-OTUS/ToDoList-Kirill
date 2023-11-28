@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from "./modules/shared/shared.module";
+import { ListItemDescriptionComponent } from './components/list-item-description/list-item-description.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {SharedModule} from "./modules/shared/shared.module";
     ToDoListComponent,
     ToDoListItemComponent,
     InputToDoComponent,
+    ListItemDescriptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,9 @@ import {SharedModule} from "./modules/shared/shared.module";
     SharedModule
   ],
   providers: [],
+  exports: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

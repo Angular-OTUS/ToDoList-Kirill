@@ -1,7 +1,15 @@
 .container {
-  width: 400px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.todo-list {
+  width: 400px;
+}
+
+
 
 ul {
   padding: 0;

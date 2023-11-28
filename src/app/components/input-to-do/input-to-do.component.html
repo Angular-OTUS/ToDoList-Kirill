@@ -1,4 +1,5 @@
 <div class="todo-add">
-  <input placeholder="Add your new todo" matInput type="text" [value] ="todoName" (change)="onValueChange($event)">
-  <app-button [buttonProps]="todoAdd" (clickButton)="onClickAdd()"></app-button>
+  <app-input [placeholder]="'Add your new Todo'" [value]="todoName" (valueChange)="onChangeInput($event)"></app-input>
+  <app-textarea [placeholder]="'Add Description'" [value]="todoDescription" (valueChange)="onChangeArea($event)"></app-textarea>
+  <app-button appTooltip [tooltip]="'Кнопка для добавления задач'" [buttonProps]="todoAdd" (clickButton)="onClickAdd()"></app-button>
 </div>

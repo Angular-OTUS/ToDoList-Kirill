@@ -1,12 +1,20 @@
-<app-loader *ngIf="isLoading"></app-loader>
-<div class="container" *ngIf="!isLoading">
-  <h1>Todo List</h1>
-  <ul>
-    <app-to-do-list-item-component
-      *ngFor="let todoItem of arrayTodo"
-      [todoItem]="todoItem"
-      (deleteTodo) = "setDeleteTodo($event)"
-    ></app-to-do-list-item-component>
-  </ul>
-  <app-input-to-do (sendNewTodo)="setNewTodo($event)"></app-input-to-do>
-</div>
+<app-loader *ngIf="isLoading; else list"></app-loader>
+<ng-template #list>
+  <div class="container">
+    <div class="todo-list">
+      <h1>Todo List</h1>
+      <ul>
+        <app-to-do-list-item-component
+                *ngFor="let todoItem of arrayTodo"
+                [todoItem]="todoItem"
+                (deleteTodo) = "setDeleteTodo($event)"
+                (selectId)="setSelectedItemId($event)"
+                [selectedId]="selectedItemId"
+                appTooltip [tooltip]="'Задача, которую необходимо выполнить'"
+        ></app-to-do-list-item-component>
+      </ul>
+      <app-input-to-do (sendNewTodo)="setNewTodo($event)"></app-input-to-do>
+    </div>
+    <app-list-item-description *ngIf="getDescription(selectedItemId) as description" [description]="description"></app-list-item-description>
+  </div>
+</ng-template>
